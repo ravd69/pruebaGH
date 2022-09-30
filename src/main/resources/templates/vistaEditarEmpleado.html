@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script>
+        function editar_elemento(){
+            if(confirm('Estas seguro que deseas editar este registro?')){
+                return true;
+            }else{
+                return false;
+            }
+        }
+    </script>
+    <title>Editar empleado</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
+</head>
+<body>
+    <nav class="navbar navbar-expand-md bg-dark navbar-dark">
+        <a class="navbar-brand" href="#">Agregar empleado</a>
+        <div class="collapsed navbar-collapsed" id="collapsibleNavbar">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" th:href="@{/listarEmpleados}">
+                        Lista empleados
+                    </a>
+                </li>
+
+            </ul>
+        </div>
+
+    </nav>
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 container justify-content-center">
+                <div class="card-body">
+                    <form th:action="@{/editarEmpleado/{id}(id=${empleado.id})}" th:object="${empleado}" method="post">
+                        <div class="form-group">
+                            <label>Nombre:</label>
+                            <input type="text" name="nombre" th:field="*{nombre}" class="form-control" placeholder="Ingrese nombre">
+                        </div>
+                        <div class="form-group">
+                            <label>Apellido:</label>
+                            <input type="text" name="apellido" th:field="*{apellido}" class="form-control" placeholder="Ingrese apellido">
+                        </div>
+                        <div class="form-group">
+                            <label>Edad:</label>
+                            <input type="number" name="edad" th:field="*{edad}" class="form-control" placeholder="Ingrese edad">
+                        </div>
+                        <div class="form-group">
+                            <label>Cargo:</label>
+                            <input type="text" name="cargo" th:field="*{cargo}" class="form-control" placeholder="Ingrese cargo">
+                        </div>
+                        <div class="form-group">
+                            <label>Email:</label>
+                            <input type="email" name="email" th:field="*{email}" class="form-control" placeholder="Ingrese email" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Activo:</label>
+                            <input type="checkbox" name="activo" th:field="*{activo}" checked >
+                        </div>
+                        <br>
+                        <div class="box-footer">
+                            <button onclick="return editar_elemento()" class="btn btn-success">Guardar</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
